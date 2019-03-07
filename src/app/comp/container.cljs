@@ -9,31 +9,26 @@
             [reel.comp.reel :refer [comp-reel]]
             [respo-md.comp.md :refer [comp-md]]
             [app.config :refer [dev?]]
-            [respo-composer.core :refer [render-markup]]
-            [composed.templates :refer [templates]]))
+            [respo-composer.core :refer [render-markup extract-templates]]
+            [shadow.resource :refer [inline]]
+            [cljs.reader :refer [read-string]]
+            [cumulo-util.core :refer [id! unix-time!]]
+            [app.updater :refer [model-updater]]
+            [respo.comp.inspect :refer [comp-inspect]]))
 
 (defcomp
  comp-container
  (reel)
- (let [store (:store reel), states (:states store)]
+ (let [store (:store reel)
+       states (:states store)
+       templates (extract-templates (read-string (inline "composed/composer.edn")))]
    (div
-    {:style (merge ui/global ui/row)}
-    (textarea
-     {:value (:content store),
-      :placeholder "Content",
-      :style (merge ui/flex ui/textarea {:height 320}),
-      :on-input (action-> :content (:value %e))})
-    (=< "8px" nil)
-    (div
-     {:style ui/flex}
-     (comp-md "This is some content with `code`")
-     (=< "8px" nil)
-     (button
-      {:style ui/button,
-       :inner-text (str "run"),
-       :on-click (fn [e d! m!] (println (:content store)))})
-     (render-markup
-      (get templates "container")
-      {:data {:title "HEADER OF PAGE"}, :templates templates}
-      (fn [op op-data] (println op op-data))))
+    {}
+    (render-markup
+     (get templates "container")
+     {:data (:model store), :templates templates, :level 1}
+     (fn [d! op props op-data]
+       (println "Action" op props op-data)
+       (d! :model (model-updater (:model store) op props op-data (id!) (unix-time!)))))
+    (when dev? (comp-inspect "templates" templates {}))
     (when dev? (cursor-> :reel comp-reel states reel {})))))

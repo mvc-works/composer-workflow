@@ -1,0 +1,58 @@
+{
+ :sessions {}
+ :users {
+  "OzQOOvni3" {:id "OzQOOvni3", :name "chen", :nickname "chen", :password "d41d8cd98f00b204e9800998ecf8427e", :avatar nil}
+ }
+ :templates {
+  "7Ut3EjsPV" {
+   :id "7Ut3EjsPV", :name "container", :mock-pointer nil, :width 400, :height 400
+   :mocks {}
+   :markup {
+    :id "system", :type :box, :layout :row
+    :props {}
+    :attrs {}
+    :presets #{}
+    :style {}
+    :children {
+     "T" {
+      :id "T", :type :template, :layout nil
+      :props {"name" "header"}
+      :attrs {}
+      :presets #{}
+      :style {}
+      :children {}
+     }
+     "j" {
+      :id "j", :type :text, :layout nil
+      :props {"value" "EXAMPLE"}
+      :attrs {}
+      :presets #{}
+      :style {}
+      :children {}
+     }
+    }
+   }
+  }
+  "PSNqgLI4M" {
+   :id "PSNqgLI4M", :name "header", :mock-pointer nil, :width 400, :height 400
+   :mocks {}
+   :markup {
+    :id "system", :type :box, :layout :row
+    :props {}
+    :attrs {}
+    :presets #{}
+    :style {}
+    :children {
+     "T" {
+      :id "T", :type :text, :layout nil
+      :props {"value" "This is text demo"}
+      :attrs {}
+      :presets #{}
+      :style {}
+      :children {}
+     }
+    }
+   }
+  }
+ }
+}
