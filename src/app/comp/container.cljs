@@ -21,14 +21,15 @@
  (reel)
  (let [store (:store reel)
        states (:states store)
+       model (:model store)
        templates (extract-templates (read-string (inline "composed/composer.edn")))]
    (div
     {}
     (render-markup
      (get templates "container")
-     {:data (:model store), :templates templates, :level 1}
+     {:data model, :templates templates, :level 1}
      (fn [d! op props op-data]
-       (println "Action" op props op-data)
-       (d! :model (model-updater (:model store) op props op-data (id!) (unix-time!)))))
-    (when dev? (comp-inspect "templates" templates {}))
+       (println "Action" op props (pr-str op-data))
+       (d! :model (model-updater model op props op-data (id!) (unix-time!)))))
+    (when dev? (comp-inspect "model" model {}))
     (when dev? (cursor-> :reel comp-reel states reel {})))))
