@@ -5,7 +5,7 @@
  }
  :templates {
   "7Ut3EjsPV" {
-   :id "7Ut3EjsPV", :name "container", :mock-pointer "mC_GvBP4_", :width 400, :height 400
+   :id "7Ut3EjsPV", :name "container", :mock-pointer "mC_GvBP4_", :width 400, :height "200"
    :mocks {
     "mC_GvBP4_" {
      :id "mC_GvBP4_", :name "base"
@@ -92,7 +92,7 @@
     :children {
      "T" {
       :id "T", :type :text, :layout nil
-      :props {"value" "Todolist"}
+      :props {"value" "\"Todolist"}
       :attrs {}
       :presets #{:font-fancy}
       :style {}
@@ -107,12 +107,13 @@
       :children {}
      }
      "j" {
-      :id "j", :type :input, :layout nil
-      :props {"action" "~:input", "value" "@"}
-      :attrs {"placeholder" "Task"}
-      :presets #{}
-      :style {}
+      :layout nil, :type :input, :id "j"
       :children {}
+      :style {}
+      :presets #{}
+      :event {"input" ":input"}
+      :attrs {"placeholder" "Task"}
+      :props {"value" "@"}
      }
      "r" {
       :id "r", :type :space, :layout nil
@@ -123,12 +124,13 @@
       :children {}
      }
      "v" {
-      :id "v", :type :button, :layout nil
-      :props {"text" "Submit", "action" "~:submit"}
-      :attrs {}
-      :presets #{}
-      :style {}
+      :layout nil, :type :button, :id "v"
       :children {}
+      :style {}
+      :presets #{}
+      :event {"click" ":submit"}
+      :attrs {}
+      :props {}
      }
     }
    }
@@ -154,12 +156,13 @@
       :children {}
      }
      "j" {
-      :id "j", :type :icon, :layout nil
-      :props {"name" "delete", "action" "~:remove", "data" "@"}
-      :attrs {}
-      :presets #{}
-      :style {}
+      :layout nil, :type :icon, :id "j"
       :children {}
+      :style {}
+      :presets #{}
+      :event {"click" ":remove"}
+      :attrs {}
+      :props {"name" "delete", "param" "@"}
      }
     }
    }
