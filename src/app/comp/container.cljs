@@ -9,11 +9,12 @@
             [reel.comp.reel :refer [comp-reel]]
             [respo-md.comp.md :refer [comp-md]]
             [app.config :refer [dev?]]
-            [respo-composer.core :refer [render-markup extract-templates]]
+            [composer.core :refer [render-markup extract-templates]]
             [shadow.resource :refer [inline]]
             [cljs.reader :refer [read-string]]
             [cumulo-util.core :refer [id! unix-time!]]
-            [respo.comp.inspect :refer [comp-inspect]]))
+            [respo.comp.inspect :refer [comp-inspect]]
+            [clojure.string :as string]))
 
 (defcomp
  comp-container
@@ -30,7 +31,7 @@
        (when dev? (println "Action" op param (pr-str options)))
        (case op
          :input (d! :input (:value options))
-         :submit (d! :submit nil)
+         :submit (when-not (string/blank? (:input store)) (d! :submit nil))
          :remove (d! :remove param)
          (do (println "Unknown op:" op)))))
     (when dev? (comp-inspect "Store" store {}))
