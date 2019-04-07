@@ -13,12 +13,11 @@
             [shadow.resource :refer [inline]]
             [cljs.reader :refer [read-string]]
             [cumulo-util.core :refer [id! unix-time!]]
-            [respo.comp.inspect :refer [comp-inspect]]
-            [clojure.string :as string]))
+            [respo.comp.inspect :refer [comp-inspect]]))
 
 (defcomp
  comp-container
- (reel)
+ (reel view-model on-action)
  (let [store (:store reel)
        states (:states store)
        templates (extract-templates (read-string (inline "composer.edn")))]
@@ -26,13 +25,7 @@
     {}
     (render-markup
      (get templates "container")
-     {:data store, :templates templates, :level 1}
-     (fn [d! op param options]
-       (when dev? (println "Action" op param (pr-str options)))
-       (case op
-         :input (d! :input (:value options))
-         :submit (when-not (string/blank? (:input store)) (d! :submit nil))
-         :remove (d! :remove param)
-         (do (println "Unknown op:" op)))))
+     {:data view-model, :templates templates, :level 1}
+     (fn [d! op param options] (on-action d! op param options view-model)))
     (when dev? (comp-inspect "Store" store {}))
     (when dev? (cursor-> :reel comp-reel states reel {})))))
