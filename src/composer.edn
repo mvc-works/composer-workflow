@@ -5,7 +5,7 @@
  }
  :templates {
   "7Ut3EjsPV" {
-   :id "7Ut3EjsPV", :name "container", :mock-pointer "mC_GvBP4_", :width 400, :height "200"
+   :id "7Ut3EjsPV", :name "container", :mock-pointer "mC_GvBP4_", :width 400, :height "200", :sort-key "a"
    :mocks {
     "mC_GvBP4_" {
      :id "mC_GvBP4_", :name "base"
@@ -50,7 +50,7 @@
    }
   }
   "A5xqC-Dn9" {
-   :id "A5xqC-Dn9", :name "records", :mock-pointer "MXQufyomf", :width 400, :height 400
+   :id "A5xqC-Dn9", :name "records", :mock-pointer "MXQufyomf", :width 400, :height 400, :sort-key "b"
    :mocks {
     "MXQufyomf" {
      :id "MXQufyomf", :name "base"
@@ -76,7 +76,7 @@
    }
   }
   "PSNqgLI4M" {
-   :id "PSNqgLI4M", :name "header", :mock-pointer "g3M1KxNPb", :width 400, :height 100
+   :id "PSNqgLI4M", :name "header", :mock-pointer "g3M1KxNPb", :width 400, :height 100, :sort-key "c"
    :mocks {
     "g3M1KxNPb" {
      :id "g3M1KxNPb", :name "base"
@@ -136,7 +136,7 @@
    }
   }
   "ZgOQN0Kvb" {
-   :id "ZgOQN0Kvb", :name "task", :mock-pointer "qV_zU_bKP", :width 400, :height 400
+   :id "ZgOQN0Kvb", :name "task", :mock-pointer "qV_zU_bKP", :width 400, :height 400, :sort-key "d"
    :mocks {
     "qV_zU_bKP" {:id "qV_zU_bKP", :data "SOMETHING", :name "base"}
    }
