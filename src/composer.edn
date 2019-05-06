@@ -94,8 +94,8 @@
       :id "T", :type :text, :layout nil
       :props {"value" "\"Todolist"}
       :attrs {}
-      :presets #{:font-fancy}
-      :style {}
+      :presets #{}
+      :style {"font-family" "Josefin Sans, Helvetica neue, Arial, sans-serif"}
       :children {}
      }
      "b" {
@@ -151,8 +151,8 @@
       :id "T", :type :text, :layout nil
       :props {"value" "@"}
       :attrs {}
-      :presets #{:font-normal}
-      :style {}
+      :presets #{}
+      :style {"font-family" "Hind, Helvatica, Arial, sans-serif"}
       :children {}
      }
      "j" {
