@@ -5,11 +5,7 @@
   (case op
     :states (update store :states (mutate op-data))
     :hydrate-storage op-data
-    :input (assoc store :input op-data)
-    :submit
-      (-> store
-          (assoc :input "")
-          (update :records (fn [records] (conj records (:input store)))))
+    :submit (-> store (update :records (fn [records] (conj records op-data))))
     :remove
       (update
        store

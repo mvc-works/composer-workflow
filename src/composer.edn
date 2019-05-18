@@ -8,10 +8,14 @@
    :id "7Ut3EjsPV", :name "container", :mock-pointer "mC_GvBP4_", :width 400, :height "200", :sort-key "a"
    :mocks {
     "mC_GvBP4_" {
-     :id "mC_GvBP4_", :name "base"
+     :id "mC_GvBP4_", :name "base", :template-id "7Ut3EjsPV", :mock-id "mC_GvBP4_"
      :data {
-      :input "demo"
       :records ["task 1111" "tasl 3333"]
+     }
+     :state {
+      :header {
+       :data {:draft "zero"}
+      }
      }
     }
    }
@@ -24,7 +28,7 @@
     :children {
      "T" {
       :id "T", :type :template, :layout nil
-      :props {"name" "header", "data" "@:input"}
+      :props {"name" "header", "data" "@:input", "state-key" ":header"}
       :attrs {}
       :presets #{}
       :style {}
@@ -79,8 +83,11 @@
    :id "PSNqgLI4M", :name "header", :mock-pointer "g3M1KxNPb", :width 400, :height 100, :sort-key "c"
    :mocks {
     "g3M1KxNPb" {
-     :id "g3M1KxNPb", :name "base"
+     :id "g3M1KxNPb", :name "base", :template-id "PSNqgLI4M", :mock-id "g3M1KxNPb"
      :data {}
+     :state {
+      :data {:draft "DEMO"}
+     }
     }
    }
    :markup {
@@ -113,7 +120,7 @@
       :presets #{}
       :event {"input" ":input"}
       :attrs {"placeholder" "Task"}
-      :props {"value" "@"}
+      :props {"value" "#:draft"}
      }
      "r" {
       :id "r", :type :space, :layout nil

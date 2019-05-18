@@ -3,10 +3,32 @@
 
 (defn get-view-model [store] store)
 
-(defn on-action [d! op param options view-model]
-  (when dev? (println "Action" op param (pr-str options)))
-  (case op
-    :input (d! :input (:value options))
-    :submit (when-not (string/blank? (:input view-model)) (d! :submit nil))
-    :remove (d! :remove param)
-    (do (println "Unknown op:" op))))
+(def state-header
+  {:init (fn [props state] (or state {:draft ""})),
+   :update (fn [d! op context options state mutate!]
+     (case op
+       :input (mutate! (assoc state :draft (:value options)))
+       :submit
+         (when-not (string/blank? (:draft state))
+           (d! :submit (:draft state))
+           (mutate! (assoc state :draft "")))
+       (do (println "Unknown op:" op))))})
+
+(def state-task
+  {:init (fn [props state] (or state {})),
+   :update (fn [d! op context options state mutate!]
+     (case op (:remove (d! :remove (:param options)))))})
+
+(def states-manager {"header" state-header, "task" state-task})
+
+(defn on-action [d! op context options view-model states]
+  (let [param (:param options)
+        template-name (:template-name context)
+        state-path (:state-path context)
+        mutate! (fn [x] (d! :states [state-path x]))
+        this-state (get-in states (conj state-path :data))]
+    (when dev? (println "Action" op param context (pr-str options)))
+    (if (contains? states-manager template-name)
+      (let [action-handler (get-in states-manager [template-name :update])]
+        (action-handler d! op context options this-state mutate!))
+      (println "Unhandled template:" template-name))))
