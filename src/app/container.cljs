@@ -2,27 +2,24 @@
 (ns app.container
   (:require [hsl.core :refer [hsl]]
             [respo-ui.core :as ui]
-            [respo.core
-             :refer
-             [defcomp cursor-> action-> mutation-> <> div button textarea span]]
+            [respo.core :refer [defcomp cursor-> <> div button textarea span]]
             [respo.comp.space :refer [=<]]
             [reel.comp.reel :refer [comp-reel]]
-            [respo-md.comp.md :refer [comp-md]]
             [app.config :refer [dev?]]
             [composer.core :refer [render-markup extract-templates]]
             [shadow.resource :refer [inline]]
             [cljs.reader :refer [read-string]]
-            [cumulo-util.core :refer [id! unix-time!]]
             [respo.comp.inspect :refer [comp-inspect]]
             [app.vm :as vm]
             [respo.util.list :refer [map-val]]))
 
 (defcomp
  comp-container
- (reel view-model)
+ (reel)
  (let [store (:store reel)
        states (:states store)
-       templates (extract-templates (read-string (inline "composer.edn")))]
+       templates (extract-templates (read-string (inline "composer.edn")))
+       view-model (vm/get-view-model store)]
    (div
     {:style ui/global}
     (render-markup

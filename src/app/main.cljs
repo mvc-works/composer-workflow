@@ -9,8 +9,7 @@
             [reel.schema :as reel-schema]
             [cljs.reader :refer [read-string]]
             [app.config :as config]
-            [cumulo-util.core :refer [repeat!]]
-            [app.vm :as vm]))
+            [cumulo-util.core :refer [repeat!]]))
 
 (defonce *reel
   (atom (-> reel-schema/reel (assoc :base schema/store) (assoc :store schema/store))))
@@ -25,10 +24,7 @@
   (.setItem js/localStorage (:storage-key config/site) (pr-str (:store @*reel))))
 
 (defn render-app! [renderer]
-  (renderer
-   mount-target
-   (comp-container @*reel (vm/get-view-model (:store @*reel)))
-   #(dispatch! %1 %2)))
+  (renderer mount-target (comp-container @*reel) #(dispatch! %1 %2)))
 
 (def ssr? (some? (js/document.querySelector "meta.respo-ssr")))
 
