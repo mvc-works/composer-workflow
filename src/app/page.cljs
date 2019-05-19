@@ -2,7 +2,7 @@
 (ns app.page
   (:require [respo.render.html :refer [make-string]]
             [shell-page.core :refer [make-page spit slurp]]
-            [app.comp.container :refer [comp-container]]
+            [app.container :refer [comp-container]]
             [app.schema :as schema]
             [reel.schema :as reel-schema]
             [cljs.reader :refer [read-string]]
@@ -24,7 +24,7 @@
 
 (defn prod-page []
   (let [reel (-> reel-schema/reel (assoc :base schema/store) (assoc :store schema/store))
-        html-content (make-string (comp-container reel (:store reel) nil))
+        html-content (make-string (comp-container reel))
         assets (read-string (slurp "dist/assets.edn"))
         cdn (if config/cdn? (:cdn-url config/site) "")
         prefix-cdn (fn [x] (str cdn x))]
