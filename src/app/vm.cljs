@@ -29,6 +29,8 @@
         this-state (get-in states (conj state-path :data))]
     (when dev? (println "Action" op param context (pr-str options)))
     (if (contains? states-manager template-name)
-      (let [action-handler (get-in states-manager [template-name :update])]
-        (action-handler d! op context options this-state mutate!))
+      (let [action-handler (get-in states-manager [template-name :update])
+            state-fn (get-in states-manager [template-name :init])
+            state (if (fn? state-fn) (state-fn (:data context) this-state) this-state)]
+        (action-handler d! op context options state mutate!))
       (println "Unhandled template:" template-name))))
