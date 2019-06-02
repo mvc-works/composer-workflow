@@ -176,6 +176,24 @@
   }
  }
  :settings {
-  :colors {}
+  :color-groups {}
+  :presets {
+   "J1oMDHcvp" {
+    :id "J1oMDHcvp", :name "base-padding"
+    :style {:padding "4px 8px"}
+   }
+   "Nqk4Dbg5Y" {
+    :id "Nqk4Dbg5Y", :name "expand"
+    :style {:flex 1, :overflow :auto}
+   }
+   "_2jXqlOtE" {
+    :id "_2jXqlOtE", :name "global"
+    :style {:line-height 2, :font-size 14, :font-family "Hind,Verdana,'Hiragino Sans GB','WenQuanYi Micro Hei','Microsoft Yahei',sans-serif", :color "hsl(0,0%,20%)"}
+   }
+   "uHabbXGQ4" {
+    :id "uHabbXGQ4", :name "fullscreen"
+    :style {:position :absolute, :left 0, :right 0, :width "100%", :height "100%", :overflow :auto}
+   }
+  }
  }
 }
