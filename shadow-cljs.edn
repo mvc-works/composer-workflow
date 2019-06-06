@@ -10,7 +10,7 @@
                 [respo/markdown         "0.2.4"]
                 [respo/feather          "0.1.1"]
                 [respo/reel             "0.3.5"]
-                [respo/composer         "0.1.16"]
+                [respo/composer         "0.1.17-a1"]
                 [medley                 "1.2.0"]
                 [cumulo/util            "0.1.10"]
                 [org.clojure/core.incubator "0.1.4"]]
