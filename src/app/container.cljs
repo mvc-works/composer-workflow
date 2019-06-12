@@ -18,7 +18,8 @@
  (reel)
  (let [store (:store reel)
        states (:states store)
-       templates (extract-templates (read-string (inline "composer.edn")))
+       composer-data (read-string (inline "composer.edn"))
+       templates (extract-templates composer-data)
        view-model (vm/get-view-model store)]
    (div
     {:style ui/global}
@@ -32,7 +33,8 @@
       :states states,
       :state-fns (->> vm/states-manager
                       (map (fn [[alias manager]] [alias (:init manager)]))
-                      (into {}))}
+                      (into {})),
+      :presets (get-in composer-data [:settings :presets])}
      (fn [d! op context options]
        (vm/on-action d! op (dissoc context :templates :state-fns) options view-model states)))
     (when dev? (comp-inspect "Store" store {}))
