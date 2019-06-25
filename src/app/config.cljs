@@ -18,8 +18,6 @@
   {:dev-ui "http://localhost:8100/main-fonts.css",
    :release-ui "http://cdn.tiye.me/favored-fonts/main-fonts.css",
    :cdn-url "http://cdn.tiye.me/composer-workflow/",
-   :cdn-folder "tiye.me:cdn/composer-workflow",
    :title "Composer",
    :icon "http://cdn.tiye.me/logo/respo.png",
-   :storage-key "composer-workflow",
-   :upload-folder "tiye.me:repo/mvc-works/composer-workflow/"})
+   :storage-key "composer-workflow"})
